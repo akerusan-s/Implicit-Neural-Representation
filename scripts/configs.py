@@ -1,0 +1,129 @@
+class DefaultConfig:
+    epochs = 100
+    lr = 5e-4
+    out_dim = 2
+    num_hidden_layers = 3
+    hidden_size = 80
+    c_hyperparam = [1, 1, 1e-5]
+    log_interval = 10
+    save_interval = 50
+    save = True
+    save_path = '../models_checkpoints/model'
+    data_path = '../data/datasets/linear_0_10_interval_100_points_-2_2_start_1e-1_noise.npz'
+
+
+class Config1:
+    epochs = 100
+    lr = 5e-4
+    out_dim = 2
+    num_hidden_layers = 3
+    hidden_size = 80
+    c_hyperparam = [1, 1, 1e-5]
+    log_interval = 1
+    save_interval = 50
+    save = True
+    save_path = '../models_checkpoints/model_1'
+    data_path = '../data/datasets/linear_0_10_interval_100_points_-2_2_start_1e-1_noise.npz'
+
+
+class Config2:
+    epochs = 2000
+    lr = 5e-4
+    out_dim = 2
+    num_hidden_layers = 3
+    hidden_size = 80
+    c_hyperparam = [1, 1, 1e-5]
+    log_interval = 10
+    save_interval = 500
+    save = True
+    save_path = '../models_checkpoints/model_2'
+    data_path = '../data/datasets/linear_0_10_interval_100_points_-2_2_start_1e-1_noise.npz'
+
+
+class Config3:
+    epochs = 500
+    lr = 5e-4
+    out_dim = 2
+    num_hidden_layers = 3
+    hidden_size = 80
+    c_hyperparam = [1, 1, 1e-2]
+    log_interval = 10
+    save_interval = 100
+    save = True
+    save_path = '../models_checkpoints/model_3'
+    data_path = '../data/datasets/linear_0_10_interval_100_points_-2_2_start_1e-1_noise.npz'
+
+
+class Config4(DefaultConfig):
+    epochs = 500
+    save_interval = 250
+    c_hyperparam = [1, 1, 1e-3]
+    save_path = '../models_checkpoints/model_4'
+
+
+class Config5(DefaultConfig):
+    epochs = 1000
+    save_interval = 500
+    c_hyperparam = [1, 1, 1e-3]
+    save_path = '../models_checkpoints/model_5'
+
+
+class Config6:
+    model_type = 'nondefault_init'
+    epochs = 600
+    lr = 5e-4
+    out_dim = 2
+    num_hidden_layers = 3
+    hidden_size = 80
+    c_hyperparam = [1, 1, 1e-3]
+    log_interval = 10
+    save_interval = 200
+    save = True
+    save_path = '../models_checkpoints/model_6'
+    data_path = '../data/datasets/linear_0_10_interval_100_points_-2_2_start_1e-1_noise.npz'
+
+
+class Config7:
+    model_type = 'nondefault_init'
+    epochs = 1000
+    lr = 5e-4
+    out_dim = 2
+    num_hidden_layers = 3
+    hidden_size = 80
+    c_hyperparam = [1, 1, 1e-2]
+    log_interval = 10
+    save_interval = 200
+    save = True
+    save_path = '../models_checkpoints/model_7'
+    data_path = '../data/datasets/linear_0_10_interval_100_points_-2_2_start_1e-1_noise.npz'
+
+
+class Config8:
+    model_type = 'nondefault_init'
+    epochs = 1000
+    lr = 5e-4
+    out_dim = 2
+    num_hidden_layers = 3
+    hidden_size = 80
+    c_hyperparam = [1, 1, 1e-4]
+    log_interval = 10
+    save_interval = 200
+    save = True
+    save_path = '../models_checkpoints/model_8'
+    data_path = '../data/datasets/linear_0_10_interval_100_points_-2_2_start_1e-1_noise.npz'
+
+
+class Config9:
+    model_type = 'nondefault_init'
+    epochs = 2000
+    lr = 5e-4
+    out_dim = 2
+    num_hidden_layers = 3
+    hidden_size = 80
+    c_hyperparam = [1, 1, 1e-4]
+    log_interval = 10
+    save_interval = 400
+    save = True
+    save_path = '../models_checkpoints/model_9'
+    data_path = '../data/datasets/linear_0_10_interval_100_points_-2_2_start_1e-1_noise.npz'
+

@@ -24,7 +24,6 @@ def train(
 
     for epoch in range(epochs):
         model.train()
-        loss_temp = []
 
         loss1_total = 0.0
         loss2_total = 0.0
@@ -61,7 +60,6 @@ def train(
             loss1_total = loss1_total + loss1
             loss2_total = loss2_total + loss2
             loss3_total = loss3_total + loss3
-            loss_temp.append((loss1 + loss2 + loss3).item())
 
         losses = [loss1_total, loss2_total, loss3_total]
         total_loss = sum(losses[i] * c[i] for i in range(3))

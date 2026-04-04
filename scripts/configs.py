@@ -127,3 +127,99 @@ class Config9:
     save_path = '../models_checkpoints/model_9'
     data_path = '../data/datasets/linear_0_10_interval_100_points_-2_2_start_1e-1_noise.npz'
 
+
+class Config10:
+    model_type = 'conv_rktv'
+    device = 'cuda'
+    epochs = 1000
+    lr = 5e-4
+    out_dim = 2
+    c_hyperparam = [1, 1, 1e-4]
+    log_interval = 10
+    save_interval = 400
+    save = True
+    save_path = '../models_checkpoints/model_10'
+    data_path = '../data/datasets/linear_0_10_interval_100_points_-2_2_start_1e-1_noise.npz'
+    in_channels = 1,
+    siren_num_hidden_layers = 3
+    siren_hidden_size = 80
+    conv_hidden_layers = [16, 32, 64, 32, 16]
+    conv_out_channels = 2
+
+
+class Config11:
+    model_type = 'conv_rktv'
+    device = 'cuda'
+    epochs = 1000
+    lr = 5e-4
+    c_hyperparam = [1, 1, 1e-4]
+    log_interval = 10
+    save_interval = 200
+    save = True
+    save_path = '../models_checkpoints/model_11'
+    data_path = '../data/datasets/linear_0_10_interval_100_points_-2_2_start_1e-1_noise.npz'
+    out_dim = 2
+    in_channels = 1,
+    siren_num_hidden_layers = 3
+    siren_hidden_size = 40
+    conv_hidden_layers = [16, 16]
+    conv_out_channels = 2
+
+
+class Config12:
+    model_type = 'conv_rktv'
+    device = 'cuda'
+    epochs = 1000
+    lr = 3e-4
+    c_hyperparam = [1, 1, 1e-4]
+    log_interval = 10
+    save_interval = 200
+    save = True
+    save_path = '../models_checkpoints/model_12'
+    data_path = '../data/datasets/linear_0_10_interval_100_points_-2_2_start_1e-1_noise.npz'
+    out_dim = 2
+    in_channels = 1,
+    siren_num_hidden_layers = 3
+    siren_hidden_size = 40
+    conv_hidden_layers = [16]
+    conv_out_channels = 16
+
+
+class Config13:
+    model_type = 'conv_rktv'
+    device = 'cuda'
+    epochs = 2000
+    lr = 3e-4
+    c_hyperparam = [1, 1, 1e-4]
+    log_interval = 10
+    save_interval = 200
+    save = True
+    save_path = '../models_checkpoints/model_13'
+    data_path = '../data/datasets/linear_0_10_interval_100_points_-2_2_start_1e-1_noise.npz'
+    out_dim = 2
+    in_channels = 1,
+    siren_num_hidden_layers = 3
+    siren_hidden_size = 60
+    conv_hidden_layers = [16]
+    conv_out_channels = 16
+    conv_kernel_size = 5
+
+
+class Config14:
+    model_type = 'conv_rktv'
+    device = 'cuda'
+    epochs = 2000
+    lr = 3e-4
+    c_hyperparam = [1, 1, 1e-4]
+    log_interval = 10
+    save_interval = 200
+    save = True
+    save_path = '../models_checkpoints/model_14'
+    data_path = '../data/datasets/linear_0_10_interval_100_points_-2_2_start_1e-1_noise.npz'
+    out_dim = 2
+    in_channels = 1,
+    siren_num_hidden_layers = 3
+    siren_hidden_size = 80
+    conv_hidden_layers = [16, 16]
+    conv_out_channels = 16
+    conv_kernel_size = 7

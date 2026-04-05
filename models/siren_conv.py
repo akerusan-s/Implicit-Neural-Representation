@@ -17,17 +17,21 @@ class RktvConvModel(nn.Module):
             siren_num_hidden_layers=3,
             siren_hidden_size=80,
             conv_hidden_layers=None,
-            conv_out_channels=2,
-            conv_kernel_size=3
+            conv_kernel_size=3,
+            model_dim=4
     ):
         super().__init__()
-        self.siren_model = RktvModel(out_channels, siren_num_hidden_layers, siren_hidden_size, conv_out_channels)
-        self.conv_model = ConvModel(conv_out_channels, in_channels, conv_hidden_layers, conv_kernel_size)
+        self.embedding_layer = nn.Linear(in_channels, model_dim)
+        self.siren_model = RktvModel(model_dim, siren_num_hidden_layers, siren_hidden_size, model_dim)
+        self.conv_model = ConvModel(model_dim, model_dim, conv_hidden_layers, conv_kernel_size)
+        self.linear_head = nn.Linear(model_dim, out_channels)
 
     def forward(self, x):
-        # x: (batch, 1, seq_len)
-        x = self.conv_model(x)
-        x = self.siren_model(x.squeeze().T).T.unsqueeze(0)
+        # x: (batch, in_channels, seq_len)
+        x = torch.transpose(self.embedding_layer(torch.transpose(x, 1, 2)), 1, 2)  # x: (batch, model_dim, seq_len)
+        x = x + self.conv_model(x)                                                 # x: (batch, model_dim, seq_len)
+        x = x + torch.transpose(self.siren_model(torch.transpose(x, 1, 2)), 1, 2)
+        x = torch.transpose(self.linear_head(torch.transpose(x, 1, 2)), 1, 2)
         return x
 
 
@@ -37,19 +41,19 @@ def get_model(
         siren_num_hidden_layers=3,
         siren_hidden_size=80,
         conv_hidden_layers=None,
-        conv_out_channels=2,
-        conv_kernel_size=3
+        conv_kernel_size=3,
+        model_dim=4
 ):
     torch.manual_seed(0)
     torch.use_deterministic_algorithms(True)
     np.random.seed(147)
     random.seed(0)
     return RktvConvModel(
-        out_channels,
-        in_channels,
-        siren_num_hidden_layers,
-        siren_hidden_size,
-        conv_hidden_layers,
-        conv_out_channels,
-        conv_kernel_size
+        out_channels=out_channels,
+        in_channels=in_channels,
+        siren_num_hidden_layers=siren_num_hidden_layers,
+        siren_hidden_size=siren_hidden_size,
+        conv_hidden_layers=conv_hidden_layers,
+        conv_kernel_size=conv_kernel_size,
+        model_dim=model_dim
     )

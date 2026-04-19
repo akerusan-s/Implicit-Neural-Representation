@@ -243,3 +243,43 @@ class Config15:
     conv_hidden_layers = [4]
     model_dim = 2
     conv_kernel_size = 5
+
+
+class Config16:
+    model_type = 'conv_siren_rktv_encoder'
+    device = 'cuda'
+    epochs = 3000
+    lr = 5e-4
+    c_hyperparam = [1, 1, 1e-3]
+    log_interval = 1
+    save_interval = 1000
+    save = True
+    save_path = '../models_checkpoints/model_16'
+    data_path = '../data/datasets/linear_0_10_interval_100_points_-2_2_start_1e-1_noise.npz'
+    out_channels = 2
+    siren_num_hidden_layers = 3
+    siren_hidden_size = 80
+    conv_hidden_layers = [4, 8]
+    conv_kernel_size = 5
+    conv_out_channels = 16
+    embedding_size = 2
+
+
+class Config17:
+    model_type = 'conv_siren_rktv_encoder'
+    device = 'cuda'
+    epochs = 1000
+    lr = 5e-4
+    c_hyperparam = [1, 1, 1e-3]
+    log_interval = 1
+    save_interval = 500
+    save = True
+    save_path = '../models_checkpoints/model_17'
+    data_path = '../data/datasets/linear_0_10_interval_100_points_-2_2_start_1e-1_noise.npz'
+    out_channels = 2
+    siren_num_hidden_layers = 3
+    siren_hidden_size = 80
+    conv_hidden_layers = [4, 8]
+    conv_kernel_size = 5
+    conv_out_channels = 16
+    embedding_size = 16

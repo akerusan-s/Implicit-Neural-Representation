@@ -12,15 +12,16 @@ class RktvModel(nn.Module):
             self,
             output_dim,
             num_hidden_layers=3,
-            hidden_size=80
+            hidden_size=80,
+            input_dim=1
     ):
 
         super(RktvModel, self).__init__()
 
-        self.input_layer = nn.Linear(1, hidden_size)
+        self.input_layer = nn.Linear(input_dim, hidden_size)
 
         ###
-        torch.nn.init.uniform_(self.input_layer.weight, -3 * 6 ** 0.5, 3 * 6 ** 0.5)
+        torch.nn.init.uniform_(self.input_layer.weight, -30 * (6 / input_dim) ** 0.5, 30 * (6 / input_dim) ** 0.5)
         torch.nn.init.zeros_(self.input_layer.bias)
         ###
 
@@ -52,7 +53,8 @@ class RktvModel(nn.Module):
 def get_model(
         output_dim,
         num_hidden_layers=3,
-        hidden_size=80
+        hidden_size=80,
+        input_dim=1
 ) -> RktvModel:
     torch.manual_seed(0)
     torch.use_deterministic_algorithms(True)
@@ -62,5 +64,6 @@ def get_model(
     return RktvModel(
         output_dim,
         num_hidden_layers=num_hidden_layers,
-        hidden_size=hidden_size
+        hidden_size=hidden_size,
+        input_dim=input_dim
     )

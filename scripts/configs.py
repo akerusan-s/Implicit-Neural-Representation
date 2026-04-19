@@ -226,20 +226,20 @@ class Config14:
 
 
 class Config15:
-    model_type = 'conv_rktv_residual'
-    device = 'cuda'
-    epochs = 2000
-    lr = 3e-4
-    c_hyperparam = [1, 1, 1e-4]
-    log_interval = 10
-    save_interval = 200
+    model_type = 'conv_siren_rktv_residual'
+    device = 'cpu'
+    epochs = 3000
+    lr = 5e-4
+    c_hyperparam = [1, 1, 1e-5]
+    log_interval = 1
+    save_interval = 500
     save = True
     save_path = '../models_checkpoints/model_15'
     data_path = '../data/datasets/linear_0_10_interval_100_points_-2_2_start_1e-1_noise.npz'
     out_dim = 2
-    in_channels = 1,
+    in_channels = 1
     siren_num_hidden_layers = 3
     siren_hidden_size = 80
-    conv_hidden_layers = [4, 8]
-    model_dim = 8
-    conv_kernel_size = 7
+    conv_hidden_layers = [4]
+    model_dim = 2
+    conv_kernel_size = 5

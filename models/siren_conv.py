@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 
-from models.siren_nondefault_init import RktvModel
+from models.siren import RktvModel
 from models.conv import ConvModel
 
 import numpy as np

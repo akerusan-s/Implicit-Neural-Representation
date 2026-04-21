@@ -283,3 +283,23 @@ class Config17:
     conv_kernel_size = 5
     conv_out_channels = 16
     embedding_size = 16
+
+
+class Config18:
+    model_type = 'conv_siren_rktv_encoder'
+    device = 'cpu'
+    epochs = 5000
+    lr = 3e-3
+    c_hyperparam = [1, 1, 1e-1]
+    log_interval = 100
+    save_interval = 2500
+    save = True
+    save_path = '../models_checkpoints/model_18'
+    data_path = '../data/datasets/linear_0_10_interval_100_points_-2_2_start_1e-1_noise.npz'
+    out_channels = 2
+    siren_num_hidden_layers = 2
+    siren_hidden_size = 40
+    conv_hidden_layers = [16, 32]
+    conv_kernel_size = 5
+    conv_out_channels = 32
+    embedding_size = 8

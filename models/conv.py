@@ -19,7 +19,7 @@ def build_layers(layers_shapes, kernel_size=3, use_normalization=False):
         ))
         if use_normalization:
             layers.append(nn.InstanceNorm1d(layers_shapes[i + 1]))
-        layers.append(nn.ReLU())
+        layers.append(nn.LeakyReLU(0.2))
     layers.append(nn.Conv1d(layers_shapes[-2], layers_shapes[-1], kernel_size=(1,)))
 
     return nn.Sequential(*layers)

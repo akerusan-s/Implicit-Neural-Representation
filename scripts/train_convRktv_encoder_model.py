@@ -2,7 +2,7 @@ from configs import *
 from training.train_siren_conv_encoder import train_model
 from models.siren_conv_encoder import get_model
 
-config = Config16()
+config = Config18()
 model = get_model(
     out_channels=config.out_channels,
     embedding_size=config.embedding_size,

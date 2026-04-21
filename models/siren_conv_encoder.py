@@ -46,7 +46,7 @@ class RktvConvEncModel(nn.Module):
         x_embed = self.embedding_layer(time)                                    # (seq_len, embedding_size)
         x_encoder = self.encoder(states.unsqueeze(0)).squeeze().T               # (seq_len, conv_out_channels)
 
-        x_encoder = torch.mean(x_encoder, dim=1).expand(x_embed.shape[0], -1)   # (seq_len, conv_out_channels)
+        x_encoder = torch.mean(x_encoder, dim=0).expand(x_embed.shape[0], -1)   # (seq_len, conv_out_channels)
 
         x_input = torch.cat([x_encoder, x_embed], dim=1)    # (seq_len, embedding_size + conv_out_channels)
         x_decoder = self.decoder(x_input)                   # (seq_len, out_channels)

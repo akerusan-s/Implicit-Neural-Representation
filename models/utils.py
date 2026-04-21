@@ -30,6 +30,18 @@ def get_grads(inputs, outputs):
     return torch.cat(grad_per_coord)
 
 
+def get_grads_batch(inputs, outputs):
+    assert len(outputs.shape) >= 2
+
+    grads = [torch.autograd.grad(
+        outputs[:, i],
+        inputs,
+        grad_outputs=torch.ones_like(outputs[:, i]),
+        create_graph=True, retain_graph=True
+    )[0].reshape(-1, 1) for i in range(outputs.shape[1])]
+    return torch.cat(grads, dim=1)
+
+
 def save_model(model, optimizer, dir_path):
     torch.save(model, dir_path + "/model.pth")
     torch.save(optimizer.state_dict(), dir_path + "/optimizer.pth")

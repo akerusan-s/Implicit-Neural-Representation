@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import torch_geometric.nn as gnn
 
-from models.siren import RktvModel
+from models.siren_nondefault_init import RktvModel
 from models.conv import ConvModel
 
 import numpy as np

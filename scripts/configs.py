@@ -286,11 +286,11 @@ class Config17:
 
 
 class Config18:
-    model_type = 'conv_siren_rktv_encoder'
+    model_type = 'conv_siren_rktv_'
     device = 'cpu'
     epochs = 5000
-    lr = 3e-3
-    c_hyperparam = [1, 1, 1e-1]
+    lr = 5e-4
+    c_hyperparam = [1, 1, 1e-4]
     log_interval = 100
     save_interval = 2500
     save = True
@@ -303,3 +303,23 @@ class Config18:
     conv_kernel_size = 5
     conv_out_channels = 32
     embedding_size = 8
+
+
+class Config19:
+    model_type = 'conv_siren_rktv_residual'
+    device = 'cpu'
+    epochs = 7500
+    lr = 1e-4
+    c_hyperparam = [1, 1, 1e-5]
+    log_interval = 50
+    save_interval = 2500
+    save = True
+    save_path = '../models_checkpoints/model_19'
+    data_path = '../data/datasets/lorenz_0_10_interval_200_points_-8_7_27_start_1e-1_noise.npz'
+    out_dim = 3
+    in_channels = 1
+    siren_num_hidden_layers = 3
+    siren_hidden_size = 80
+    conv_hidden_layers = [4, 8]
+    model_dim = 16
+    conv_kernel_size = 5

@@ -2,7 +2,7 @@ from configs import *
 from training.train_siren_conv import train_model
 from models.siren_conv import get_model
 
-config = Config15()
+config = Config19()
 model = get_model(
     out_channels=config.out_dim,
     in_channels=config.in_channels,

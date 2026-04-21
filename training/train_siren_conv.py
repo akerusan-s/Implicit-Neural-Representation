@@ -2,6 +2,7 @@ import torch
 
 from data.utils.loader import get_data
 from metrics.metrics import metric
+from models.utils import get_grads_batch
 from training.utils import Logger
 
 
@@ -33,14 +34,15 @@ def train(
         half_inputs = h / 2 + inputs
 
         outputs = model(inputs).squeeze()     # (2, 100)
+        half_outputs = model(half_inputs).squeeze()
         next_outputs = model(next_inputs).squeeze()
 
-        jac = torch.func.jacrev(model)(inputs).squeeze()[:, torch.arange(seq_len), torch.arange(seq_len)]
-        half_jac = torch.func.jacrev(model)(half_inputs).squeeze()[:, torch.arange(seq_len), torch.arange(seq_len)]
-        next_jac = torch.func.jacrev(model)(next_inputs).squeeze()[:, torch.arange(seq_len), torch.arange(seq_len)]
+        jac = get_grads_batch(inputs, outputs.T).T
+        half_jac = get_grads_batch(half_inputs, half_outputs.T).T
+        next_jac = get_grads_batch(next_inputs, next_outputs.T).T
 
-        hes = torch.func.hessian(model)(inputs).squeeze()[:, torch.arange(seq_len), torch.arange(seq_len), torch.arange(seq_len)]
-        next_hes = torch.func.hessian(model)(next_inputs).squeeze()[:, torch.arange(seq_len), torch.arange(seq_len), torch.arange(seq_len)]
+        hes = get_grads_batch(inputs, jac.T).T
+        next_hes = get_grads_batch(next_inputs, next_jac.T).T
 
         loss1 = (torch.norm(outputs - targets, dim=0) ** 2).sum() / seq_len
 
@@ -66,7 +68,7 @@ def train(
             config.device
         )
         eval_loss_dot = metric(
-            torch.func.jacrev(model)(infer_input).squeeze()[:, torch.arange(100), torch.arange(100)].squeeze().T[1:-1, :],
+            torch.func.jacrev(model)(infer_input).squeeze()[:, torch.arange(seq_len + 1), torch.arange(seq_len + 1)].squeeze().T[1:-1, :],
             data_derivatives[1:-1, :],
             config.device
         )

@@ -13,12 +13,15 @@ def train(
     timestamps,
     data,
     data_derivatives,
-    data_noised
+    data_noised,
+    return_metric=False
 ):
     logger = Logger(config)
     model = model.to(config.device)
     c = config.c_hyperparam
     seq_len = timestamps.shape[0] - 1
+
+    eval_loss_dot = float('inf')
 
     for epoch in range(config.epochs):
         model.train()
@@ -62,14 +65,15 @@ def train(
 
         model.eval()
         infer_input = torch.tensor(timestamps, requires_grad=True, dtype=torch.float).to(config.device)
-        infer_targets = torch.tensor(data_noised, requires_grad=True, dtype=torch.float).T.to(config.device)
+        infer_targets = torch.tensor(data_noised, dtype=torch.float).T.to(config.device)
+        infer_output = model(infer_input, infer_targets)
         eval_loss_state = metric(
-            model(infer_input, infer_targets).T[1:-1, :],
+            infer_output.T[1:-1, :],
             data[1:-1, :],
             config.device
         )
         eval_loss_dot = metric(
-            torch.func.jacrev(model)(infer_input, infer_targets)[:, torch.arange(100), torch.arange(100)].squeeze().T[1:-1, :],
+            get_grads_batch(infer_input, infer_output.T)[1:-1, :],
             data_derivatives[1:-1, :],
             config.device
         )
@@ -83,6 +87,8 @@ def train(
         if logger.check_save(epoch + 1):
             logger.save(epoch + 1, model, optimizer)
 
+    if return_metric:
+        return eval_loss_dot
     return model
 
 

@@ -323,3 +323,23 @@ class Config19:
     conv_hidden_layers = [4, 8]
     model_dim = 16
     conv_kernel_size = 5
+
+
+class Config20:
+    model_type = 'conv_siren_rktv_encoder'
+    device = 'cpu'
+    epochs = 5000
+    lr = 5e-4
+    c_hyperparam = [1, 1, 1e-3]
+    log_interval = 100
+    save_interval = 2500
+    save = False
+    save_path = '../models_checkpoints/model_20'
+    data_path = '../data/datasets/lorenz_0_10_interval_200_points_-8_7_27_start_1e-1_noise.npz'
+    out_channels = 3
+    siren_num_hidden_layers = 4
+    siren_hidden_size = 256
+    conv_hidden_layers = [16, 32, 64, 128, 256]
+    conv_kernel_size = 5
+    conv_out_channels = 256
+    embedding_size = 32

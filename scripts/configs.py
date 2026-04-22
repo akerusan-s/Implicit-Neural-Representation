@@ -334,8 +334,8 @@ class Config20:
     log_interval = 100
     save_interval = 7500
     save = True
-    save_path = 'model_20'
-    data_path = 'lorenz_0_10_interval_200_points_-8_7_27_start_1e-1_noise.npz'
+    save_path = '../models_checkpoints/model_20'
+    data_path = '../data/datasets/lorenz_0_10_interval_200_points_-8_7_27_start_1e-1_noise.npz'
     embedding_size = 32
     out_channels = 3
     siren_num_hidden_layers = 3
@@ -344,3 +344,35 @@ class Config20:
     conv_out_channels = 64
     conv_kernel_size = 5
     use_normalization = False
+
+
+class Config21:
+    model_type = 'siren'
+    device = 'cpu'
+    epochs = 1800
+    lr = 5e-4
+    c_hyperparam = [1, 1, 1e-5]
+    log_interval = 100
+    save_interval = 300
+    save = True
+    save_path = '../models_checkpoints/model_21'
+    data_path = '../data/datasets/linear_0_10_interval_100_points_-2_2_start_1e-1_noise.npz'
+    num_hidden_layers = 3
+    hidden_size = 80
+    out_dim = 2
+
+
+class Config22:
+    model_type = 'siren'
+    device = 'cpu'
+    epochs = 2000
+    lr = 5e-4
+    c_hyperparam = [1, 1, 1e-5]
+    log_interval = 100
+    save_interval = 1000
+    save = True
+    save_path = '../models_checkpoints/model_22'
+    data_path = '../data/datasets/lorenz_0_10_interval_200_points_-8_7_27_start_1e-1_noise.npz'
+    num_hidden_layers = 3
+    hidden_size = 80
+    out_dim = 3

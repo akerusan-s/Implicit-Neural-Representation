@@ -21,7 +21,8 @@ class RktvConvEncModel(nn.Module):
 
             conv_hidden_layers=None,
             conv_out_channels=32,
-            conv_kernel_size=3
+            conv_kernel_size=3,
+            use_normalization=False
     ):
         super().__init__()
         self.embedding_layer = gnn.TemporalEncoding(embedding_size)  # nn.Linear(1, embedding_size)
@@ -30,7 +31,7 @@ class RktvConvEncModel(nn.Module):
             out_channels,
             conv_hidden_layers,
             conv_kernel_size,
-            use_normalization=True
+            use_normalization=use_normalization
         )
         self.decoder = RktvModel(
             out_channels,
@@ -60,7 +61,8 @@ def get_model(
         siren_hidden_size=80,
         conv_hidden_layers=None,
         conv_out_channels=32,
-        conv_kernel_size=3
+        conv_kernel_size=3,
+        use_normalization=False
 ):
     torch.manual_seed(0)
     torch.use_deterministic_algorithms(True)
@@ -73,5 +75,6 @@ def get_model(
         siren_hidden_size=siren_hidden_size,
         conv_hidden_layers=conv_hidden_layers,
         conv_out_channels=conv_out_channels,
-        conv_kernel_size=conv_kernel_size
+        conv_kernel_size=conv_kernel_size,
+        use_normalization=use_normalization
     )

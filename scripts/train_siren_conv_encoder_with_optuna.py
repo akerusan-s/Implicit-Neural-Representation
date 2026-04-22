@@ -56,7 +56,8 @@ def train_model(config):
     study = optuna.create_study(
         storage="sqlite:///db.sqlite3",
         study_name="conv_siren_rktv_encoder",
-        direction='minimize'
+        direction='minimize',
+        load_if_exists=True
     )
     study.optimize(objective, n_trials=100)
 

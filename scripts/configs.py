@@ -365,9 +365,9 @@ class Config21:
 class Config22:
     model_type = 'siren'
     device = 'cpu'
-    epochs = 2000
+    epochs = 4000
     lr = 5e-4
-    c_hyperparam = [1, 1, 1e-5]
+    c_hyperparam = [1, 1, 1e-6]
     log_interval = 100
     save_interval = 1000
     save = True
@@ -376,3 +376,63 @@ class Config22:
     num_hidden_layers = 3
     hidden_size = 80
     out_dim = 3
+
+
+class Config23:
+    model_type = 'conv_siren_rktv_encoder'
+    device = 'cpu'
+    epochs = 5000
+    lr = 0.0002519833906099168
+    c_hyperparam = [1, 1, 4e-7]
+    log_interval = 100
+    save_interval = 2500
+    save = True
+    save_path = '../models_checkpoints/model_23'
+    data_path = '../data/datasets/lorenz_0_10_interval_200_points_-8_7_27_start_1e-1_noise.npz'
+    embedding_size = 93
+    out_channels = 3
+    siren_num_hidden_layers = 2
+    siren_hidden_size = 220
+    conv_hidden_layers = [54, 101, 59]
+    conv_out_channels = 95
+    conv_kernel_size = 18
+    use_normalization = False
+    weight_decay = 0.000394024971436203
+
+
+class Config24:
+    model_type = 'conv_siren_rktv_encoder'
+    device = 'cpu'
+    epochs = 5000
+    lr = 0.0002519833906099168
+    c_hyperparam = [1, 1, 4e-7]
+    log_interval = 100
+    save_interval = 2500
+    save = True
+    save_path = '../models_checkpoints/model_24'
+    data_path = '../data/datasets/lorenz_0_10_interval_200_points_-8_7_27_start_1e-1_noise.npz'
+    embedding_size = 93
+    out_channels = 3
+    siren_num_hidden_layers = 2
+    siren_hidden_size = 220
+    conv_hidden_layers = [54, 101, 59]
+    conv_out_channels = 95
+    conv_kernel_size = 18
+    use_normalization = False
+    weight_decay = 0.000394024971436203
+
+
+# class Config25:
+#     model_type = 'siren'
+#     device = 'cpu'
+#     epochs = 4000
+#     lr = 5e-4
+#     c_hyperparam = [1, 1, 1e-6]
+#     log_interval = 100
+#     save_interval = 1000
+#     save = True
+#     save_path = '../models_checkpoints/model_25'
+#     data_path = '../data/datasets/lorenz_0_10_interval_200_points_-8_7_27_start_1e-1_noise.npz'
+#     num_hidden_layers = 3
+#     hidden_size = 80
+#     out_dim = 3

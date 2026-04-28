@@ -93,7 +93,7 @@ def train(
 
 
 def train_model(config, model):
-    optimizer = torch.optim.Adam(model.parameters(), lr=config.lr)
+    optimizer = torch.optim.Adam(model.parameters(), lr=config.lr, weight_decay=config.weight_decay)
     timestamps, data, data_derivatives, data_noised = get_data(config.data_path)
 
     model = train(
